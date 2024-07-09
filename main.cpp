@@ -2,7 +2,6 @@
 #include <fstream>
 
 #include "linkedList.h"
-#include "stack.h"
 
 using namespace std;
 
