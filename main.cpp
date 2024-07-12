@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include "linkedList.h"
+#include "trees.h"
 
 using namespace std;
 
@@ -11,6 +12,7 @@ struct studentInfo
     string studentName;
     int age;
     unsigned int studentNumber;
+    float GWA;
 
     void getData()
     {
@@ -20,8 +22,11 @@ struct studentInfo
         cout << "Enter Student's Age: ";
         cin >> age;
 
-        cout << "Enter Student's Student Number: ";
+        cout << "Enter Student's ID Number: ";
         cin >> studentNumber;
+
+        cout << "Enter Student's GWA: ";
+        cin >> GWA;
     }
 };
 
@@ -31,7 +36,7 @@ void pauseClear()
     system("cls");
 }
 
-void loadstudentInfos(LinkedList<studentInfo> &studentList)
+void loadstudentInfos(LinkedList<studentInfo> &studentList, Tree<studentInfo> &ranking)
 {
     ifstream inFile("studentList.txt");
 
@@ -43,11 +48,13 @@ void loadstudentInfos(LinkedList<studentInfo> &studentList)
     std::string studentName;
     int age;
     unsigned int studentNumber;
+    float GWA;
 
-    while (getline(inFile, studentName) && inFile >> age >> studentNumber)
+    while (getline(inFile, studentName) && inFile >> age >> studentNumber >> GWA)
     {
-        studentInfo student = {studentName, age, studentNumber};
+        studentInfo student = {studentName, age, studentNumber, GWA};
         studentList.append(student);
+        ranking.insertNode(student);
 
         inFile.ignore(100, '\n');
     }
@@ -55,7 +62,7 @@ void loadstudentInfos(LinkedList<studentInfo> &studentList)
     inFile.close();
 }
 
-void addNewRecord(LinkedList<studentInfo> &studentList, studentInfo student)
+void addNewRecord(LinkedList<studentInfo> &studentList, studentInfo student, char sortType)
 {
     ofstream outFile("studentList.txt", ios::app);
 
@@ -64,10 +71,20 @@ void addNewRecord(LinkedList<studentInfo> &studentList, studentInfo student)
     outFile
         << student.studentName << endl
         << student.age << endl
-        << student.studentNumber << endl;
+        << student.studentNumber << endl
+        << student.GWA << endl;
 
     outFile.close();
     cout << "Student Added!\n";
+
+    if (sortType == 'A')
+    {
+        studentList.bubbleSortAscending();
+    }
+    else if (sortType == 'Z')
+    {
+        studentList.bubbleSortDescending();
+    }
 }
 
 void mainMenu(int &menuChoice)
@@ -87,7 +104,8 @@ void mainMenu(int &menuChoice)
              << "3. Display All Records" << endl
              << "4. Sort Records" << endl
              << "5. Delete Record" << endl
-             << "6. Exit" << endl
+             << "6. Show Ranking" << endl
+             << "7. Exit" << endl
              << endl;
 
         cout << "Your Input Here: "; // input prompt
@@ -102,30 +120,37 @@ void mainMenu(int &menuChoice)
                 cin.ignore(123, '\n');
             }
 
-            if (menuChoice > 6 || menuChoice < 1)
+            if (menuChoice > 7 || menuChoice < 1)
             {                                            // If the input does not fall inside the menu's available options...
                 cout << "Enter a valid numeric input: "; // prompt the user to enter a valid input.
             }
 
-        } while (menuChoice > 6 || menuChoice < 1); // Repeat the loop until a valid input is acquired.
+        } while (menuChoice > 7 || menuChoice < 1); // Repeat the loop until a valid input is acquired.
 
-        if (menuChoice == 6)
+        if (menuChoice == 7)
             break;
 
-    } while (menuChoice < 1 || menuChoice > 6); // run the program as long as the user's input is out of bounds or invalid
+    } while (menuChoice < 1 || menuChoice > 7); // run the program as long as the user's input is out of bounds or invalid
 
     system("cls"); // clears the screen after successful input
+}
+
+void viewRanking(Tree<studentInfo> ranking)
+{
+    ranking.displayRanking();
 }
 
 int main()
 {
     LinkedList<studentInfo> studentList;
     studentInfo studentData;
+    Tree<studentInfo> ranking;
 
     int menuChoice;
     string toSearch;
+    char sortType = 'A';
 
-    loadstudentInfos(studentList);
+    loadstudentInfos(studentList, ranking);
 
     do
     {
@@ -141,8 +166,8 @@ int main()
                  << endl;
             cin.clear();
             cin.ignore(123, '\n');
-            studentData.getData();                  // gets the student data from the user. A member function of the class.
-            addNewRecord(studentList, studentData); // processes the data into the addNewRecord function for linked list creation
+            studentData.getData();                            // gets the student data from the user. A member function of the class.
+            addNewRecord(studentList, studentData, sortType); // processes the data into the addNewRecord function for linked list creation
             pauseClear();
             break;
 
@@ -184,10 +209,12 @@ int main()
             if (input == 'A')
             {
                 studentList.bubbleSortAscending();
+                sortType = 'A';
             }
             else if (input == 'Z')
             {
                 studentList.bubbleSortDescending();
+                sortType = 'Z';
             }
             cout << "Sorting is Successful!\n";
             pauseClear();
@@ -206,14 +233,22 @@ int main()
             pauseClear();
             break;
         case 6:
-            studentList.updateFile();
+            cout << "=====================================================" << endl
+                 << "                      SHOW RANKING                   " << endl
+                 << "=====================================================" << endl
+                 << endl;
+            viewRanking(ranking);
+            pauseClear();
+            break;
+
+        case 7:
             cout << "MEMBERS: " << endl
                  << "Casuga, Nolan Simon" << endl
                  << "Detera, Andrie" << endl
                  << "Regero, Angelito Jose" << endl;
             break; // breaks the do-while loop for program exit
         }
-    } while (menuChoice != 6);
+    } while (menuChoice != 7);
 
     return 0;
 }

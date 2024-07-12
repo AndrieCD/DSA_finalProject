@@ -34,11 +34,11 @@ public:
         { // do this code if the current is not NULL or empty
             outFile << current->data.studentName << endl
                     << current->data.age << endl
-                    << current->data.studentNumber << endl;
+                    << current->data.studentNumber << endl
+                    << current->data.GWA << endl;
 
             current = current->next;
         }
-
         outFile.close(); // close file
     }
 
@@ -61,6 +61,7 @@ public:
             }
             temp->next = newNode;
         }
+        updateFile();
     }
 
     void deleteRecord(const string &toSearch)
@@ -85,6 +86,7 @@ public:
                     prev->next = current->next;
                     delete current; // deletes the node
                     cout << "Record Deleted!\n";
+                    updateFile();
                     return;
                 }
                 else
@@ -92,6 +94,7 @@ public:
                     head = current->next; // give head to the next node
                     delete current;       // delete the current node
                     cout << "Record Deleted!\n";
+                    updateFile();
                     return;
                 }
             }
@@ -190,6 +193,7 @@ public:
         cout << "Student " << studNum << ": " << nodePtr->data.studentName << endl
              << "       Age: " << nodePtr->data.age << endl
              << " ID Number: " << nodePtr->data.studentNumber << endl
+             << " ID Number: " << nodePtr->data.GWA << endl
              << endl;
         traversalDisplay(nodePtr->next, ++studNum);
     }

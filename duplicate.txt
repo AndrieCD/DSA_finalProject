@@ -1,63 +1,84 @@
-Angelito Jose Castillano Regero
+Ana Lourdes Bautista
 20
 202312538
+3.5
 Andrie Detera
 20
 202311439
-Juan Dela Cruz
+4.0
+Angelito Jose Castillano Regero
 19
 202342318
-John Doe
+4.0
+Carlos Rivera
 22
 202158238
-Maria Clara Gonzales
+3.5
+Daniela Aquino
 18
 202312540
-Jose Maria De Jesus
-21
-202311441
-Katrina Villanueva
+3.0
+Elena Cruz
 19
 202342320
-Miguel Santos
+2.0
+Emilio Aguinaldo
 20
 202158240
-Ana Lourdes Bautista
+3.5
+Fernando Poe
 22
 202312542
-Roberto Magsaysay
+2.5
+Isabel Santiago
 18
 202311443
-Isabel Santiago
+3.0
+John Doe
 21
 202342322
-Carlos Rivera
+1.5
+Jose Maria De Jesus
 20
 202158242
-Veronica Reyes
+3.0
+Juan Dela Cruz
 19
 202312544
-Ricardo Fernandez
+3.0
+Katrina Villanueva
 22
 202311445
-Emilio Aguinaldo
+1.5
+Leonabel Alcantara
 18
 202342324
-Sophia Ramos
+3.5
+Maria Clara Gonzales
 21
 202158244
-Daniela Aquino
+1.5
+Miguel Santos
 20
 202312546
-Fernando Poe
+1.0
+Ricardo Fernandez
 19
 202311447
-Elena Cruz
+4.0
+Roberto Magsaysay
 22
 202342326
-Yngell Janikka Fabregas
+3.0
+Sophia Ramos
 20
 202351628
-Leonabel Alcantara
+2.5
+Veronica Reyes
 20
 202051329
+3.5
+Yngell Janikka Fabregas
+20
+202315245
+4.0
