@@ -76,15 +76,6 @@ void addNewRecord(LinkedList<studentInfo> &studentList, studentInfo student, cha
 
     outFile.close();
     cout << "Student Added!\n";
-
-    if (sortType == 'A')
-    {
-        studentList.bubbleSortAscending();
-    }
-    else if (sortType == 'Z')
-    {
-        studentList.bubbleSortDescending();
-    }
 }
 
 void mainMenu(int &menuChoice)
@@ -140,6 +131,18 @@ void viewRanking(Tree<studentInfo> ranking)
     ranking.displayRanking();
 }
 
+void autoSort(LinkedList<studentInfo> studentList, char sortType)
+{
+    if (sortType == 'A')
+    {
+        studentList.bubbleSortAscending();
+    }
+    else if (sortType == 'Z')
+    {
+        studentList.bubbleSortDescending();
+    }
+}
+
 int main()
 {
     LinkedList<studentInfo> studentList;
@@ -166,8 +169,10 @@ int main()
                  << endl;
             cin.clear();
             cin.ignore(123, '\n');
-            studentData.getData();                            // gets the student data from the user. A member function of the class.
-            addNewRecord(studentList, studentData, sortType); // processes the data into the addNewRecord function for linked list creation
+            studentData.getData();
+            addNewRecord(studentList, studentData, sortType);
+            autoSort(studentList, sortType);
+            studentList.updateFile();
             pauseClear();
             break;
 
@@ -218,7 +223,8 @@ int main()
                 sortType = 'Z';
                 cout << "Sorting is Successful!\n";
             }
-            cout << "Sorting is Unsuccessful!\n";
+            else
+                cout << "Sorting is Unsuccessful!\n";
             pauseClear();
             break;
         case 5:
@@ -231,6 +237,8 @@ int main()
             cout << "Enter the name of the student: ";
             getline(cin, toSearch);
             studentList.deleteRecord(toSearch);
+            autoSort(studentList, sortType);
+            studentList.updateFile();
             pauseClear();
             break;
         case 6:

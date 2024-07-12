@@ -61,7 +61,6 @@ public:
             }
             temp->next = newNode;
         }
-        updateFile();
     }
 
     void deleteRecord(const string &toSearch)
@@ -86,7 +85,6 @@ public:
                     prev->next = current->next;
                     delete current; // deletes the node
                     cout << "Record Deleted!\n";
-                    updateFile();
                     return;
                 }
                 else
@@ -94,7 +92,6 @@ public:
                     head = current->next;
                     delete current;
                     cout << "Record Deleted!\n";
-                    updateFile();
                     return;
                 }
             }
@@ -129,9 +126,9 @@ public:
             {
                 if (nodePtr->data.studentName > nodePtr->next->data.studentName)
                 {
-                    string temp = nodePtr->data.studentName;
-                    nodePtr->data.studentName = nodePtr->next->data.studentName;
-                    nodePtr->next->data.studentName = temp;
+                    T temp = nodePtr->data;
+                    nodePtr->data = nodePtr->next->data;
+                    nodePtr->next->data = temp;
                 }
                 nodePtr = nodePtr->next;
             }
@@ -148,9 +145,9 @@ public:
             {
                 if (nodePtr->data.studentName < nodePtr->next->data.studentName)
                 {
-                    string temp = nodePtr->data.studentName;
-                    nodePtr->data.studentName = nodePtr->next->data.studentName;
-                    nodePtr->next->data.studentName = temp;
+                    T temp = nodePtr->data;
+                    nodePtr->data = nodePtr->next->data;
+                    nodePtr->next->data = temp;
                 }
                 nodePtr = nodePtr->next;
             }
@@ -191,9 +188,9 @@ public:
         }
 
         cout << "Student " << studNum << ": " << nodePtr->data.studentName << endl
-             << "       Age: " << nodePtr->data.age << endl
-             << " ID Number: " << nodePtr->data.studentNumber << endl
-             << "       GWA: " << nodePtr->data.GWA << endl
+             << "      Age: " << nodePtr->data.age << endl
+             << "ID Number: " << nodePtr->data.studentNumber << endl
+             << "      GWA: " << nodePtr->data.GWA << endl
              << endl;
         traversalDisplay(nodePtr->next, ++studNum);
     }
