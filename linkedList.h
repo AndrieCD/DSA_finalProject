@@ -193,7 +193,7 @@ public:
         cout << "Student " << studNum << ": " << nodePtr->data.studentName << endl
              << "       Age: " << nodePtr->data.age << endl
              << " ID Number: " << nodePtr->data.studentNumber << endl
-             << " ID Number: " << nodePtr->data.GWA << endl
+             << "       GWA: " << nodePtr->data.GWA << endl
              << endl;
         traversalDisplay(nodePtr->next, ++studNum);
     }
