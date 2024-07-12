@@ -206,20 +206,21 @@ int main()
             cout << "Your Input Here: "; // input prompt
             char input;
             cin >> input;
-            if (input == 'A')
+            if (input == 'A' || input == 'a')
             {
                 studentList.bubbleSortAscending();
                 sortType = 'A';
+                cout << "Sorting is Successful!\n";
             }
-            else if (input == 'Z')
+            else if (input == 'Z' || input == 'z')
             {
                 studentList.bubbleSortDescending();
                 sortType = 'Z';
+                cout << "Sorting is Successful!\n";
             }
-            cout << "Sorting is Successful!\n";
+            cout << "Sorting is Unsuccessful!\n";
             pauseClear();
             break;
-
         case 5:
             cout << "=====================================================" << endl
                  << "                Delete Record" << endl
