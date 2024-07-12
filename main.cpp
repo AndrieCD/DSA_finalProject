@@ -229,7 +229,7 @@ int main()
             cin.ignore(123, '\n');
             cout << "Enter the name of the student: ";
             getline(cin, toSearch);
-            studentList.deleteRecord(toSearch); // deletes a specific record based on user input (ID number)
+            studentList.deleteRecord(toSearch);
             pauseClear();
             break;
         case 6:

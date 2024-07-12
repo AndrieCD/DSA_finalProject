@@ -26,12 +26,12 @@ public:
     void updateFile()
     {
         Node<T> *current = head;
-        ofstream outFile("studentList.txt"); // output to file
+        ofstream outFile("studentList.txt");
 
         current = head;
 
         while (current)
-        { // do this code if the current is not NULL or empty
+        {
             outFile << current->data.studentName << endl
                     << current->data.age << endl
                     << current->data.studentNumber << endl
@@ -39,7 +39,7 @@ public:
 
             current = current->next;
         }
-        outFile.close(); // close file
+        outFile.close();
     }
 
     void append(T &newData)
@@ -70,7 +70,7 @@ public:
         Node<T> *prev = NULL;
 
         if (!current)
-        { // if there is nothing on the list, show this message
+        {
             cout << "NO RECORDS AVAILABLE..." << endl
                  << endl;
             system("pause");
@@ -78,11 +78,11 @@ public:
         }
 
         while (current)
-        { // if current is not null do this code
+        {
             if (current->data.studentName == toSearch)
-            { // checks if student idNumber is the same as the input
+            {
                 if (current != head)
-                { // if the chosen is not the head
+                {
                     prev->next = current->next;
                     delete current; // deletes the node
                     cout << "Record Deleted!\n";
@@ -90,9 +90,9 @@ public:
                     return;
                 }
                 else
-                {                         // if the current is the head
-                    head = current->next; // give head to the next node
-                    delete current;       // delete the current node
+                {
+                    head = current->next;
+                    delete current;
                     cout << "Record Deleted!\n";
                     updateFile();
                     return;

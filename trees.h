@@ -25,12 +25,10 @@ public:
 
     void insertNode(T &newData)
     {
-        TNode<T> *newNode, *nodePtr; // we declare two pointers
-                                     // newNode will be responsible for the dynamic creation of nodes
-                                     // and nodePtr is to acquire reference to where we are in the tree
+        TNode<T> *newNode, *nodePtr;
 
-        newNode = new TNode<T>;  // this line creates a node
-        newNode->data = newData; // this line and the next will assign values to the node's members
+        newNode = new TNode<T>;
+        newNode->data = newData;
         newNode->left = NULL;
         newNode->right = NULL;
 
@@ -38,16 +36,16 @@ public:
             root = newNode;
         else
         {
-            nodePtr = root; // else, we will assign root to nodePtr so that we have a reference on where we are inside the root
+            nodePtr = root;
             while (nodePtr != NULL)
-            { //	we'll now enter a loop that runs while the node we are currently referencing is not empty
+            {
                 if (newData.GWA < nodePtr->data.GWA)
-                {                                // we then compare the value we want to insert to the current node's data
-                    if (nodePtr->left)           // if the value is less than the node's data, we'll check the current node's left pointer
-                        nodePtr = nodePtr->left; // if the node's left pointer is pointing to another, then we'll replace the reference
+                {
+                    if (nodePtr->left)
+                        nodePtr = nodePtr->left;
                     else
                     {
-                        nodePtr->left = newNode; // on the other hand, if the node's left pointer is NULL, we'll assign our newly created node
+                        nodePtr->left = newNode;
                         break;
                     }
                 }
